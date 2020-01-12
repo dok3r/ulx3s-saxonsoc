@@ -4,7 +4,8 @@ MAINTAINER kost - https://github.com/kost
 ENV PATH=/opt/riscv/bin:/opt/ulx3s/bin:$PATH \
  ULX3SURL=https://github.com/alpin3/ulx3s/releases/download/v2019.12.30/ulx3s-2019.12.30-linux-x86_64.tar.gz \
  RISCVTC=https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-20171231-x86_64-linux-centos6.tar.gz \
- GHDL_PREFIX=/opt/ulx3s/ghdl/lib/ghdl
+ GHDL_PREFIX=/opt/ulx3s/ghdl/lib/ghdl \
+ ULX3S_USER=ulx3s
 
 RUN apt-get update && \
  apt-get install git curl make software-properties-common -y && \
@@ -22,5 +23,7 @@ RUN apt-get update && \
  mkdir -p /opt/ulx3s && \
  curl -L $ULX3SURL | tar -xvz --strip-components=1 -C /opt/ulx3s -f - && \
  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+ adduser --uid 1000 --system ${ULX3S_USER} && \
  echo "[i] Success"
 
+# USER ulx3s
