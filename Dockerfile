@@ -8,7 +8,7 @@ ENV PATH=/opt/riscv/bin:/opt/ulx3s/bin:$PATH \
  ULX3S_USER=ulx3s
 
 RUN apt-get update && \
- apt-get install git curl make software-properties-common -y && \
+ apt-get install git curl make software-properties-common build-essential bison flex bc wget cpio python unzip rsync -y && \
  add-apt-repository -y ppa:openjdk-r/ppa && \
  apt-get update && \
  apt-get install openjdk-8-jdk -y && \
