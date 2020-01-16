@@ -15,6 +15,7 @@ if [ "x$SDRAM_SIZE" = "x" ]; then
 fi
 
 echo "Building $FPGA_SIZE with SDRAM $SDRAM_SIZE and $SDRAM_TIMING to $DIST_OUT"
+mkdir -p $DIST_OUT
 
  cd $HOME && \
  git clone https://github.com/SpinalHDL/SaxonSoc.git -b dev --recursive SaxonSoc && \
