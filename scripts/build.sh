@@ -66,7 +66,6 @@ echo "Building $FPGA_SIZE with SDRAM $SDRAM_SIZE and $SDRAM_TIMING to $DIST_OUT"
  gzip -9 < ../rootfs.tar > ../rootfs.tar.gz && \
  cp rootfs.tar.gz $DIST_OUT && \
  cp -a SaxonSoc/hardware/synthesis/ulx3s/bin/toplevel.bit $DIST_OUT/saxonsoc_linux.bit && \
- cp -a SaxonSoc/software/standalone/bootloader/build/bootloader.bin $DIST_OUT/bootloader.bin.img && \
  cp -a SaxonSoc/software/standalone/machineModeSbi/build/machineModeSbi.bin $DIST_OUT/bios.bin@0x300000.img && \
  cp -a u-boot/u-boot.bin $DIST_OUT/u-boot.bin@0x310000.img && \
  echo "[i] Success"
