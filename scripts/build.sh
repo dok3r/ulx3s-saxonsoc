@@ -28,7 +28,7 @@ mkdir -p $DIST_OUT
  cd SaxonSoc/hardware/synthesis/ulx3s && \
  cp makefile.uboot makefile && \
  make generate && \
- make FPGA_SIZE=$FPGA_SIZE SDRAM_SIZE=$SDRAM_SIZE && \
+ for SIZE in FPGA_SIZE; do make FPGA_SIZE=$SIZE SDRAM_SIZE=$SDRAM_SIZE; cp bin/toplevel.bit /dist/saxonsoc-ulx3s-linux-$SIZE.bit; rm bin/toplevel.[bc]*; done && \
  cd ../../../.. && \
  git clone https://github.com/SpinalHDL/u-boot.git -b saxon u-boot && \
  cd u-boot && \
@@ -67,7 +67,6 @@ mkdir -p $DIST_OUT
  gzip -9 < ../rootfs.tar > ../rootfs.tar.gz && \
  cd .. && \
  cp rootfs.tar.gz $DIST_OUT && \
- cp -a SaxonSoc/hardware/synthesis/ulx3s/bin/toplevel.bit $DIST_OUT/saxonsoc_linux.bit && \
  cp -a SaxonSoc/software/standalone/machineModeSbi/build/machineModeSbi.bin $DIST_OUT/bios.bin@0x300000.img && \
  cp -a u-boot/u-boot.bin $DIST_OUT/u-boot.bin@0x310000.img && \
  echo "[i] Success"
