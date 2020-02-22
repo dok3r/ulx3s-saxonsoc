@@ -1,3 +1,6 @@
+[![](https://images.microbadger.com/badges/image/dok3r/ulx3s-saxonsoc.svg)](https://microbadger.com/images/dok3r/ulx3s-saxonsoc "Get your own image badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/dok3r/ulx3s-saxonsoc)](https://hub.docker.com/r/dok3r/ulx3s-saxonsoc "Docker hub")
+
 # ulx3s-saxonsoc
 
 Automated builds for ulx3s for all FPGA sizes.
