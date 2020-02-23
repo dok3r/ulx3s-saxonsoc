@@ -1,4 +1,4 @@
-FROM ubuntu:18.10
+FROM ubuntu:19.10
 MAINTAINER kost - https://github.com/kost
 
 ENV PATH=/opt/riscv/bin:/opt/ulx3s/bin:$PATH \
