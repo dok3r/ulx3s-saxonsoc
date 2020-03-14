@@ -19,6 +19,7 @@ mkdir -p $DIST_OUT
 
  cd $HOME && \
  git clone https://github.com/SpinalHDL/SaxonSoc.git -b dev --recursive SaxonSoc && \
+ cd SaxonSoc/ext/ && rm -rf SpinalHDL && git clone https://github.com/SpinalHDL/SpinalHDL && cd ../../ && \
  cd SaxonSoc/software/standalone/bootloader && \
  make clean all BSP=Ulx3sLinuxUboot CFLAGS_ARGS="-DSDRAM_TIMING=$SDRAM_TIMING" && \
  cd ../../../.. && \
@@ -28,7 +29,7 @@ mkdir -p $DIST_OUT
  cd SaxonSoc/hardware/synthesis/ulx3s && \
  cp makefile.uboot makefile && \
  make generate && \
- for SIZE in $FPGA_SIZE; do make FPGA_SIZE=$SIZE SDRAM_SIZE=$SDRAM_SIZE; cp bin/toplevel.bit /dist/saxonsoc-ulx3s-linux-$SIZE.bit; rm bin/toplevel.[bc]*; done && \
+ for SIZE in $FPGA_SIZE; do make FPGA_SIZE=$SIZE SDRAM_SIZE=$SDRAM_SIZE; cp bin/toplevel.bit $DIST_OUT/saxonsoc-ulx3s-linux-$SIZE.bit; rm bin/toplevel.[bc]*; done && \
  cd ../../../.. && \
  git clone https://github.com/SpinalHDL/u-boot.git -b saxon u-boot && \
  cd u-boot && \
