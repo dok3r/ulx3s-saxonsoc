@@ -24,7 +24,7 @@ mkdir -p $DIST_OUT
  make clean all BSP=Ulx3sLinuxUboot CFLAGS_ARGS="-DSDRAM_TIMING=$SDRAM_TIMING" && \
  cd ../../../.. && \
  cd SaxonSoc/software/standalone/machineModeSbi && \
- make clean all BSP=Ulx3sLinuxUboot && \
+ make clean all BSP=Ulx3sLinuxUboot CFLAGS_ARGS="-DHDMI_CONSOLE -DPS2_KEYBOARD" && \
  cd ../../../.. && \
  cd SaxonSoc/hardware/synthesis/ulx3s && \
  cp makefile.uboot makefile && \
@@ -36,6 +36,8 @@ mkdir -p $DIST_OUT
  make saxon_ulx3s_defconfig && \
  make -j$(nproc) && \
  cd .. && \
+ cp -a SaxonSoc/software/standalone/machineModeSbi/build/machineModeSbi.bin $DIST_OUT/bios.bin@0x300000.img && \
+ cp -a u-boot/u-boot.bin $DIST_OUT/u-boot.bin@0x310000.img && \
  git clone https://github.com/SpinalHDL/buildroot.git -b saxon buildroot && \
  git clone https://github.com/SpinalHDL/linux.git -b vexriscv --depth 100 linux && \
  cd buildroot && \
@@ -68,7 +70,5 @@ mkdir -p $DIST_OUT
  gzip -9 < ../rootfs.tar > ../rootfs.tar.gz && \
  cd .. && \
  cp rootfs.tar.gz $DIST_OUT && \
- cp -a SaxonSoc/software/standalone/machineModeSbi/build/machineModeSbi.bin $DIST_OUT/bios.bin@0x300000.img && \
- cp -a u-boot/u-boot.bin $DIST_OUT/u-boot.bin@0x310000.img && \
  echo "[i] Success"
 
