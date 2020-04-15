@@ -24,7 +24,7 @@ mkdir -p $DIST_OUT
  make clean all BSP=Ulx3sLinuxUboot CFLAGS_ARGS="-DSDRAM_TIMING=$SDRAM_TIMING" && \
  cd ../../../.. && \
  cd SaxonSoc/software/standalone/machineModeSbi && \
- make clean all BSP=Ulx3sLinuxUboot CFLAGS_ARGS="-DHDMI_CONSOLE -DPS2_KEYBOARD" && \
+ make clean all BSP=Ulx3sLinuxUboot CFLAGS_ARGS="-DHDMI_CONSOLE -DUSB_KEYBOARD" && \
  cd ../../../.. && \
  cd SaxonSoc/hardware/synthesis/ulx3s && \
  cp makefile.uboot makefile && \
