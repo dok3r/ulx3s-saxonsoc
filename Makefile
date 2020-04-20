@@ -12,6 +12,12 @@ ver:
 build:
 	docker build -t $(IMAGE):v$(VERSION) .
 
+bins:
+	./wrap.sh -e FPGA_SIZE="12 25 45 85" -e SDRAM_SIZE=32 -e DIST_OUT=/dist/saxon-32-$(VERSION)
+
+bins64:
+	./wrap.sh -e FPGA_SIZE="85" -e SDRAM_SIZE=64 -e SDRAM_TIMING=AS4C32M16SB_7TCN_ps -e DIST_OUT=/dist/saxon-64-$(VERSION)
+
 push:
 	docker push $(IMAGE):v$(VERSION)
 
