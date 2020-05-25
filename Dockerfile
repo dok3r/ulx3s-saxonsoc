@@ -2,7 +2,7 @@ FROM ubuntu:19.10
 MAINTAINER kost - https://github.com/kost
 
 ENV PATH=/opt/riscv/bin:/opt/ulx3s/bin:$PATH \
- ULX3SURL=https://github.com/alpin3/ulx3s/releases/download/v2020.04.20/ulx3s-2020.04.20-linux-x86_64.tar.gz \
+ ULX3SURL=https://github.com/alpin3/ulx3s/releases/download/v2020.05.24/ulx3s-2020.05.24-linux-x86_64.tar.gz \
  RISCVTC=https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-20171231-x86_64-linux-centos6.tar.gz \
  GHDL_PREFIX=/opt/ulx3s/ghdl/lib/ghdl \
  ULX3S_USER=ulx3s
