@@ -5,6 +5,7 @@ OSTYPE=$(shell uname -s | tr '[A-Z]' '[a-z]')
 MACHINE=$(shell uname -m)
 ARCH=$(OSTYPE)-$(MACHINE)
 VERSION=$(shell date '+%Y.%m.%d')
+DIST_OUT=dist/
 
 ver:
 	echo $(IMAGE) version $(VERSION)
@@ -36,7 +37,7 @@ clean:
 	rm -rf dist work
 
 rel:
-	ghr v$(VERSION) dist/
+	ghr v$(VERSION) $(DIST_OUT)
 
 draft:
 	ghr -draft v$(VERSION) dist/
