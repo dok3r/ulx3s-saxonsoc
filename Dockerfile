@@ -1,14 +1,15 @@
 FROM ubuntu:19.10
 MAINTAINER kost - https://github.com/kost
 
-ENV PATH=/opt/riscv/bin:/opt/ulx3s/bin:$PATH \
+ENV PATH=/opt/riscv/bin:/opt/riscvcc/bin:/opt/ulx3s/bin:$PATH \
  ULX3SURL=https://github.com/alpin3/ulx3s/releases/download/v2020.10.12/ulx3s-2020.10.12-linux-x86_64.tar.gz \
  RISCVTC=https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-20171231-x86_64-linux-centos6.tar.gz \
+ RISCVCC=https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/releases/download/v8.3.0-2.2/xpack-riscv-none-embed-gcc-8.3.0-2.2-linux-x64.tar.gz \
  GHDL_PREFIX=/opt/ulx3s/ghdl/lib/ghdl \
  ULX3S_USER=ulx3s
 
 RUN apt-get update && \
- apt-get install git curl make software-properties-common build-essential bison flex bc wget cpio python unzip rsync -y && \
+ apt-get install git curl make software-properties-common build-essential bison flex bc wget cpio python unzip rsync device-tree-compiler libtool pkg-config libusb-1.0-0-dev libyaml-dev -y && \
  add-apt-repository -y ppa:openjdk-r/ppa && \
  apt-get update && \
  apt-get install openjdk-8-jdk -y && \
@@ -20,6 +21,8 @@ RUN apt-get update && \
  apt-get install sbt -y && \
  mkdir -p /opt/riscv && \
  curl -L $RISCVTC | tar -xvz --strip-components=1 -C /opt/riscv -f - && \
+ mkdir -p /opt/riscvcc && \
+ curl -L $RISCVCC | tar -xvz --strip-components=1 -C /opt/riscvcc -f - && \
  mkdir -p /opt/ulx3s && \
  curl -L $ULX3SURL | tar -xvz --strip-components=1 -C /opt/ulx3s -f - && \
  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
