@@ -25,6 +25,9 @@ fi
 if [ "x$SDRAM_SIZES" = "x" ]; then
 	export SDRAM_SIZES=32 	# 32 or 64 usually
 fi
+if [ "x$CPU_COUNT" = "x" ]; then
+	export CPU_COUNT=2 	# 2 or 4 usually
+fi
 
 for SDRAM_SIZE in $SDRAM_SIZES
 do
@@ -45,7 +48,7 @@ fi
 echo "Building $FPGA_SIZE with SDRAM $SDRAM_SIZE and $SDRAM_TIMING to $DIST_OUT"
 	cd $HOME && \
 	saxon_standalone_compile bootloader CFLAGS_ARGS="-DSDRAM_TIMING=$SDRAM_TIMING" && \
-	SDRAM_SIZE=$SDRAM_SIZE saxon_netlist && \
+	SDRAM_SIZE=$SDRAM_SIZE CPU_COUNT=$CPU_COUNT saxon_netlist && \
 	FPGA_SIZE=$FPGA_SIZE saxon_bitstream && \
         cp $HOME/Ulx3sSmp/SaxonSoc/hardware/synthesis/radiona/ulx3s/smp/bin/toplevel.bit $DIST_OUT/ulx3s-saxonsoc-$FPGA_SIZE-$SDRAM_SIZE.bit && \
 	saxon_opensbi && \
@@ -60,6 +63,7 @@ done
 if [ "x$SAXON_NOBUILDROOT" = "x" ]; then
 	echo "[i] Started buildroot" && \
 	saxon_buildroot && \
+        CPU_COUNT=$CPU_COUNT saxon_buildroot_dts && \
         cp $HOME/Ulx3sSmp/buildroot/output/images/dtb $DIST_OUT/ulx3s-saxonsoc.dtb && \
 	cp $HOME/Ulx3sSmp/buildroot/output/images/rootfs.cpio.uboot $DIST_OUT/ulx3s-saxonsoc-rootfs.cpio.uboot && \
 	cp $HOME/Ulx3sSmp/buildroot/output/images/uImage $DIST_OUT/ulx3s-saxonsoc-uImage && \
