@@ -19,7 +19,6 @@ mkdir -p $DIST_OUT
 
  cd $HOME && \
  git clone https://github.com/SpinalHDL/SaxonSoc.git -b dev --recursive SaxonSoc && \
- cd SaxonSoc/ext/ && rm -rf SpinalHDL && git clone https://github.com/SpinalHDL/SpinalHDL && cd ../../ && \
  cd SaxonSoc/software/standalone/bootloader && \
  make clean all BSP=Ulx3sLinuxUboot CFLAGS_ARGS="-DSDRAM_TIMING=$SDRAM_TIMING" && \
  cd ../../../.. && \
